@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Refined Nature — Business Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    /* 3.5in x 2in card + 0.125in bleed on every side */
+    @page { size: 3.75in 2.25in; margin: 0; }
+
+    :root {
+      --gold: #a88c1c;
+      --gold-bright: #c2a52a;
+      --serif: "EB Garamond", Garamond, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { background: #333; font-family: var(--serif); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    .card {
+      position: relative;
+      width: 3.75in;
+      height: 2.25in;
+      overflow: hidden;
+      background: #000;
+      color: var(--gold);
+      page-break-after: always;
+    }
+
+    /* Gold frame sits inside the 0.125in safe margin beyond the trim line */
+    .frame {
+      position: absolute;
+      inset: 0.25in;
+      border: 1.5pt solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* ---------- Front ---------- */
+    .front {
+      background:
+        radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.75)),
+        url("assets/texture-soil.jpg") center / cover;
+    }
+
+    .front .frame { background: rgba(0, 0, 0, 0.45); }
+
+    .front .wordmark {
+      font-weight: 500;
+      font-size: 17pt;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      color: var(--gold-bright);
+    }
+
+    .front .logo { width: 0.42in; height: 0.42in; margin: 0.07in 0; filter: contrast(1.35); mix-blend-mode: lighten; }
+
+    .front .tagline {
+      margin-top: 0.1in;
+      font-style: italic;
+      font-size: 7pt;
+      letter-spacing: 0.02em;
+    }
+
+    /* ---------- Back ---------- */
+    .back {
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.72)),
+        url("assets/texture-fungus.jpg") center / cover;
+    }
+
+    .back .frame {
+      background: rgba(0, 0, 0, 0.55);
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 0.12in;
+      padding: 0.12in 0.14in;
+    }
+
+    .back .info {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back .qr { display: flex; flex-direction: column; align-items: center; gap: 0.04in; }
+    .back .qr img { width: 0.68in; height: 0.68in; }
+    .back .qr p { font-style: italic; font-size: 5.5pt; }
+
+    .back h2 {
+      font-style: italic;
+      font-weight: 600;
+      font-size: 9pt;
+      color: var(--gold-bright);
+    }
+
+    .back .services { font-size: 5.6pt; letter-spacing: 0.03em; margin-top: 0.03in; }
+
+    .back .rule { width: 0.8in; border-top: 0.75pt solid var(--gold); }
+
+    .back .contact { font-size: 7.4pt; font-weight: 600; line-height: 1.35; color: var(--gold-bright); }
+    .back .contact span { font-weight: 400; font-style: italic; color: var(--gold); }
+
+    .back .logo { width: 0.18in; height: 0.18in; filter: contrast(1.35); mix-blend-mode: lighten; }
+
+    /* On-screen preview: show cards side by side with trim guides */
+    @media screen {
+      body { display: flex; flex-wrap: wrap; gap: 0.4in; padding: 0.4in; }
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 0.125in;
+        outline: 1px dashed rgba(255, 255, 255, 0.25);
+        pointer-events: none;
+      }
+      body.no-guides .card::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <section class="card front">
+    <div class="frame">
+      <div class="wordmark">REFINED</div>
+      <img class="logo" src="assets/logo.jpg" alt="Refined Nature monogram">
+      <div class="wordmark">NATURE</div>
+      <p class="tagline">"A systematic approach promoting animal welfare."</p>
+    </div>
+  </section>
+
+  <section class="card back">
+    <div class="frame">
+      <div class="info">
+        <div>
+          <h2>Custom Vivaria &amp; Natural Elements</h2>
+          <p class="services">Zoos · Conservation &amp; Education · Collectors · Designers</p>
+        </div>
+        <div class="rule"></div>
+        <p class="contact">
+          refinednature.net<br>
+          refinednature@outlook.com<br>
+          <span>Instagram</span> @highonseaweed
+        </p>
+        <img class="logo" src="assets/logo.jpg" alt="">
+      </div>
+      <div class="qr">
+        <img src="assets/qr-refinednature.svg" alt="QR code for refinednature.net">
+        <p>Scan to visit</p>
+      </div>
+    </div>
+  </section>
+  <script>if (location.search.includes("clean")) document.body.classList.add("no-guides");</script>
+</body>
+</html>
