@@ -153,7 +153,7 @@ h3 { font-size: 1.8rem; margin-bottom: 0.75rem; }
 .hero-tagline { margin-top: 2rem; font-style: italic; font-size: 1.4rem; }
 
 /* ---------- Focus list ---------- */
-.focus { list-style: none; text-align: left; }
+.focus { list-style: none; text-align: center; }
 .focus li { font-size: 1.3rem; }
 .focus li + li::before {
   content: "↓";
